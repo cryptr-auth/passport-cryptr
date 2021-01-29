@@ -10,7 +10,7 @@
     "test:watch": "jest --config jest.config.json --watch && npm run make-badges",
     "unpublish": "npm unpublish ${npm_package_name}@{npm_package_version} --force",
     "publish-force": "npm run unpublish && ls && npm run publish:lib",
-    "publish": "ls && npm run publish:lib",
+    "publish": "npm run test && ls && npm run publish:lib",
     "publish:lib": "npm publish"
   },
   "publishConfig": {
