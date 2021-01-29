@@ -1,0 +1,6 @@
+{
+  "verbose" : true,
+  "testEnvironment": "node",
+  "collectCoverage": true,
+  "coverageReporters": ["json-summary", "html"]
+}

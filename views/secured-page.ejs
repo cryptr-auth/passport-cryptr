@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head'); %>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('partials/header'); %>
+  </header>
+
+  <main>
+    <div class="jumbotron bg-success text-white">
+      <h1>You accessed a secure page</h1>
+      <p>Your credentials are following !</p>
+    </div>
+  </main>
+  <% if (error) { %>
+    <div class="alert-warning">
+      <%= error %>
+    </div>
+  <% } else { %>
+    <% data.forEach(function (book) { %>
+      <div class="media mb-3 border">
+        <img class="mr-3" src=<%= book["img"] %> alt="Generic placeholder image" style="max-height: 84px; width: 48px;">
+        <div class="media-body text-muted">
+          <h5 class="mt-0 text-black">
+            <%= book["title"] %>
+          </h5>
+          <%= book["author"] %>
+        </div>
+      </div>
+    <% }); %>
+  <% } %>
+  <footer>
+    <%- include('partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

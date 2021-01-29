@@ -1,0 +1,52 @@
+{
+  "name": "@cryptr/passport-cryptr",
+  "version": "0.1.0",
+  "description": "Cryptr authentication strategy for Passport.js",
+  "main": "./lib",
+  "scripts": {
+    "start:dev": "node dev/app.js",
+    "make-badges": "istanbul-badges-readme",
+    "test": "jest --config jest.config.json && npm run make-badges",
+    "test:watch": "jest --config jest.config.json --watch && npm run make-badges",
+    "unpublish": "npm unpublish ${npm_package_name}@{npm_package_version} --force",
+    "publish-force": "npm run unpublish && ls && npm run publish:lib",
+    "publish": "ls && npm run publish:lib",
+    "publish:lib": "npm publish"
+  },
+  "publishConfig": {
+    "registry": "https://cryptr-npm.onrender.com"
+  },
+  "keywords": [
+    "cryptr",
+    "passport",
+    "passportjs",
+    "strategy"
+  ],
+  "author": "Cryptr <thibaud@cryptr.co> (https://www.cryptr.co)",
+  "license": "MIT",
+  "dependencies": {
+    "@cryptr/cryptr-jwt-verifier": "^0.1.1",
+    "passport-strategy": "1.x.x"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "istanbul-badges-readme": "^1.0.5",
+    "jest": "^26.5.2",
+    "passport": "^0.4.1"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shark-up/passport-cryptr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shark-up/passport-cryptr/issues"
+  },
+  "homepage": "https://github.com/shark-up/passport-cryptr#readme"
+}
