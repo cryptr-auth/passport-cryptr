@@ -1,6 +1,6 @@
 | Statements                | Branches                | Functions                |
 | ------------------------- | ----------------------- | ------------------------ |
-| ![Statements](https://img.shields.io/badge/Coverage-96.1%25-brightgreen.svg) | ![Branches](https://img.shields.io/badge/Coverage-92.31%25-brightgreen.svg) | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) |
+| ![Statements](https://img.shields.io/badge/Coverage-73.56%25-red.svg) | ![Branches](https://img.shields.io/badge/Coverage-63.83%25-red.svg) | ![Functions](https://img.shields.io/badge/Coverage-85.71%25-yellow.svg) |
 
 
 # passport-cryptr
