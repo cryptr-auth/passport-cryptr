@@ -46,7 +46,7 @@ var wrongSyntaxedHeaderRequest = {
   },
 };
 
-var notMatchingHeaderRequest = {
+var otherTenantHeaderRequest = {
   headers: {
     authorization: `Bearer ${otherTenantToken}`,
   },
@@ -106,7 +106,7 @@ describe('Cryptr Strategy authenticate with other tenant Request Headers', () =>
     await new Strategy({}, function (j, v) {
       jwt = j;
       verify = v;
-    }).authenticate(notMatchingHeaderRequest);
+    }).authenticate(otherTenantHeaderRequest);
   })
 
   it('should return valid false', async () => {
