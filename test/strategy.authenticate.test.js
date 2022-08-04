@@ -5,30 +5,32 @@ var Strategy = require('../lib/strategy')
 
 var validCryptrConfig = {
   audiences: ["http://localhost:4200"],
-  client_id: "724b141a-e1eb-4f5b-bfca-22eca8ae3cc4",
+  client_id: "f407cafd-b58a-472f-b857-475a863b69b6",
   issuer: "http://localhost:4000/t/shark-academy",
   tenants: ["shark-academy"],
 };
 
 var validClaims = {
+  "application_metadata": {},
   "aud": "http://localhost:4200",
-  "cid": "724b141a-e1eb-4f5b-bfca-22eca8ae3cc4",
-  "exp": 1611158700928,
-  "iat": 1611157800928,
+  "cid": "f407cafd-b58a-472f-b857-475a863b69b6",
+  "exp": 1691159287,
+  "iat": 1659623287,
+  "dbs": "sandbox",
+  "email": "jane.doe@cryptr.co",
+  "ips": "cryptr",
   "iss": "http://localhost:4000/t/shark-academy",
-  "jti": "024e05e0-d97a-4f15-94a6-bcadeabf538b",
+  "jti": "a7debdc6-8531-4c64-9666-5d6211765d55",
   "jtt": "access",
-  "resource_owner_metadata": {},
-  "scp": [
-    "limited"
-  ],
-  "sub": "eba25511-afce-4c8e-8cab-f82822434648",
+  "sci": null,
+  "scp": null,
+  "sub": "534dcbe0-c88d-441d-84cd-1daa8dbc8393",
   "tnt": "shark-academy",
   "ver": 1
 }
 
 var validToken =
-  "eyJhbGciOiJSUzI1NiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDAwMC90L3NoYXJrLWFjYWRlbXkiLCJraWQiOiI5ZjhlNTE1MC1lNWIxLTQ4MWEtOTAyNS1mYzc2YmQ1Y2JlYmUiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAiLCJjaWQiOiI3MjRiMTQxYS1lMWViLTRmNWItYmZjYS0yMmVjYThhZTNjYzQiLCJleHAiOjE2MTExNTg3MDA5MjgsImlhdCI6MTYxMTE1NzgwMDkyOCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0MDAwL3Qvc2hhcmstYWNhZGVteSIsImp0aSI6IjAyNGUwNWUwLWQ5N2EtNGYxNS05NGE2LWJjYWRlYWJmNTM4YiIsImp0dCI6ImFjY2VzcyIsInJlc291cmNlX293bmVyX21ldGFkYXRhIjp7fSwic2NwIjpbImxpbWl0ZWQiXSwic3ViIjoiZWJhMjU1MTEtYWZjZS00YzhlLThjYWItZjgyODIyNDM0NjQ4IiwidG50Ijoic2hhcmstYWNhZGVteSIsInZlciI6MX0.A2a-f-rIGCGon9LdeiqSydhshLnq92U5h5BTjL5F9R6DCqQzsZ1XVVUxeUmdLkMNXJ8XAEti6UQvVAavh8JZ3pckr_75U57r1gKoqakApMYSj3FjYbn-EnivIAH6W8R_YBxaM6o5T2fiqqmcr97dlId_fjS0ZSsVSIhCHD8vMiIMDT0o1SnENTRSrtOQgwGYOOiYsmCZgkFGXXYdQBomDG1RlznWQwzdEpd_jjgdCnEYZDBEbwkzguTv9oI5Dv5F2YlHbBNg-iOrw2IGUzNU-0EopqlKEq-SoC1y4BcsgfmY_4rp-yDWXSVY62aoIRDAaMqwjQ3ggOxmZzSdxo2AP2QRljeKo11e6fdmWucHfcfVuxD4QIX0LyILidkhy67hb0sLYCobmOkCluUaAHj6bN1KyzbvjRODVhJOOhVbm2qgO1FayVwrX0HhS5mqxUJVlCzCoqTr-0BhFokToxnKeel2Syn1dLjeQqdSjB0HROjqx7_mSM02Qp5wknHA7Tmb5R14197Aom-WMtbb73TC3SreWP48S7_jdcVT_-VdE36D53ycx2KRNsnzmVmjhIyAgf4Mi1vs3bCS4winb0lSLAXbKvtEnumBtEI_pczgwtKObbMn1ODmyivDt8rpQjDLCK5Bnt-wMgn0C9lvQWjJRyMshcLcIMv0VfFrzqXEPRw";
+  "eyJhbGciOiJSUzI1NiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDAwMC90L3NoYXJrLWFjYWRlbXkiLCJraWQiOiI5ZjhlNTE1MC1lNWIxLTQ4MWEtOTAyNS1mYzc2YmQ1Y2JlYmUiLCJ0eXAiOiJKV1QifQ.eyJhcHBsaWNhdGlvbl9tZXRhZGF0YSI6e30sImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCIsImNpZCI6ImY0MDdjYWZkLWI1OGEtNDcyZi1iODU3LTQ3NWE4NjNiNjliNiIsImRicyI6InNhbmRib3giLCJlbWFpbCI6ImphbmUuZG9lQGNyeXB0ci5jbyIsImV4cCI6MTY5MTE1OTI4NywiaWF0IjoxNjU5NjIzMjg3LCJpcHMiOiJjcnlwdHIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQwMDAvdC9zaGFyay1hY2FkZW15IiwianRpIjoiYTdkZWJkYzYtODUzMS00YzY0LTk2NjYtNWQ2MjExNzY1ZDU1IiwianR0IjoiYWNjZXNzIiwic2NpIjpudWxsLCJzY3AiOm51bGwsInN1YiI6IjUzNGRjYmUwLWM4OGQtNDQxZC04NGNkLTFkYWE4ZGJjODM5MyIsInRudCI6InNoYXJrLWFjYWRlbXkiLCJ2ZXIiOjF9.jMuZGwCx6EdllJB-fAqEU82Ow7AfsAvVRuZ5w4WD0O8GhSqzcoL1tkb3MTwNqabnLD1NRyNAgekr8w3YBhkAql9nAmRtKi4Ax1tQBtbydgV0cqyBAse_0teWfJgZb6XX28fntmtBuLCR5FQug5XBSo-ynfPWPwRSw94IqlH6xmnWMsMf8TAYiILNzdK6T93Vk-ht8jhkfynbOn8fsGJXGwjtXXiLLaO5aeaN2lqhRTT6fqkEuisB6hN_fFuoZsfHqeAdPxuzxAxrhx_mM84nOFnvbwilwQclFn4KWRFfbksPgUp7Ux2iaJx5-Q3mEup8hbZjFSl1Og7ohbryWp17ocitNRpPaUZNZ04PeYbiFSW36-pgDS5ipzAWI3cTGsPpQ-SP75nSg2xEEv8z7NVfm4V5cHghSfwfMyBnExjNvVrhffTMbRU8B2zp1Z7tKF9dVlYwaXki1np8IBw66XQj73bDrAnwCfkQJerJx1Ctah5S8UFmvXXfMCVbS471OhuGPfm77hmpYnPfibgXJuqBSNkLtaYlPK0VexuDa-Vi5ZFIrhAs41zmZSpC5WmJ1ksTXtvatJH2reKa-_4oMtRtKwG1wu__ULkoxVRvPd0pg_WpT6WhEdt79OTvq4a86LL59GXrkiH5P8DMzLKJiJoE-renm3k7MtDRGJD1-rhVufE";
 var otherTenantToken =
   "eyJhbGciOiJSUzI1NiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDAwMC90L21pc2FwcmV0Iiwia2lkIjoiOTJlODM0MGItNGViOS00ODczLWIzMDYtZjA5M2FhNWEzNDNjIiwidHlwIjoiSldUIn0.eyJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAiLCJjaWQiOiI0MmJkYjkxOS1iNGE0LTQ4MTYtODJjNC05YjIxZmY1NDY4NzYiLCJleHAiOjE2MDAzNjQ5MDk4OTYsImlhdCI6MTYwMDMyODkwOTg5NiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0MDAwL3QvbWlzYXByZXQiLCJqdGkiOiJkNGE3NGUyMC04YzQ3LTQ2ZGItYWY1Yi00Mzk4NDc3NTA2ZjEiLCJqdHQiOiJhY2Nlc3MiLCJyZXNvdXJjZV9vd25lcl9tZXRhZGF0YSI6eyJjdXJyZW50X3Byb2plY3RfaWQiOiJmNWNlMDQ0Ny0xNjNkLTQ5ZmMtYTI5ZS1iZDgyMjljMWE1ZTYifSwic2NwIjpbImVtYWlsIl0sInN1YiI6IjViMzAyYThkLTUzYzktNDY5OC05MTQyLTM2YjkxMGYzYWI4NCIsInRudCI6Im1pc2FwcmV0IiwidmVyIjoxfQ.aC-t1IX3nqJ1oQIMIiTUHyq5Ic5MNNHFi03u9CQe18s4ejemPwDfLTgVDD7X2b1peIEr9ruap7tTGif8jYaNDN29eFpPnNw5wywhF1gNy4sPjLrvltZuVwKWee6UwxLtdMLjPkBIbS-_g1kLoatYsSrFwCQIcZnPanA82Knt72pbnjKEvscPqoNJ0wNJYF1drb9duNhNm470djUFWVzd8NSpWMigLFHIV7OtrWALhDjliUMliBo-7PRxZns4M5Yjw_6g20BpwcIJ2TK1DaiB74qyzzARuJanLTqmo-2U5CeoO2UDNIFh-7idePenbjR5nQkl7EjrNfwz0X9aAVBb8WsTMnC_ONVK4qlkZN4QAEilZbugxXrg9C3uQv0DJeuh0IueAvuF8qY680sFnLbo37VXlbohUGamlMieiehZ_mubz1pDVthpTQTIUC_v4zmL3CfyelAwnxYpK8NYn7t1Ju_ep1j_1MJsnkAUaKOkGwPslSNfLWtzQLg-UXFesU27f4lNNOdHJz5qUrKo-w6V_6hORZ9RV682AKRVLAVpHknM6a9SRhwweupE8b4lAtmblfO163szJFZ8SwmbruvPPNH-EWAdYdHruPNhgjDHsl3yv8PwmT9Ryol0zfs_aNU_IMnHNmCVVIXlGpqqaWu1GurPh7R53Sm80dWbwJbjL9Y"
 var validHeaderRequest = {
@@ -83,6 +85,7 @@ describe('Cryptr Strategy authenticate with valid Request Headers', () => {
 
 
   it('should return valid true', async () => {
+    console.log(jwt.valid)
       expect(jwt.valid).toEqual(true);
   })
   
