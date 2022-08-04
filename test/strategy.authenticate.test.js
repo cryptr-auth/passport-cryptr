@@ -4,6 +4,7 @@
 var Strategy = require('../lib/strategy')
 
 var validCryptrConfig = {
+  base_url: "http://localhost:4000",
   audiences: ["http://localhost:4200"],
   client_id: "f407cafd-b58a-472f-b857-475a863b69b6",
   issuer: "http://localhost:4000/t/shark-academy",
@@ -65,6 +66,7 @@ var validQueryRequest = {
 
 beforeEach(() => {
   process.env = Object.assign(process.env, {
+    CRYPTR_BASE_URL: validCryptrConfig.base_url,
     CRYPTR_AUDIENCES: validCryptrConfig.audiences,
     CRYPTR_CLIENT_ID: validCryptrConfig.client_id,
     CRYPTR_ISSUER: validCryptrConfig.issuer,
@@ -85,7 +87,6 @@ describe('Cryptr Strategy authenticate with valid Request Headers', () => {
 
 
   it('should return valid true', async () => {
-    console.log(jwt.valid)
       expect(jwt.valid).toEqual(true);
   })
   

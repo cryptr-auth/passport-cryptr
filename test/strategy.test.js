@@ -1,6 +1,7 @@
 var Strategy = require("../lib/strategy");
 
 var validCryptrConfig = {
+  base_url: "http://localhost:4000",
   audiences: ["http://localhost:3001"],
   issuer: "http://localhost:4000",
   tenants: ["cryptr-cryptr"],
@@ -85,6 +86,7 @@ describe('Cryptr Strategy - with wrong Config', () => {
 
 describe('Cryptr Strategy - with empty Config', () => {
   delete process.env.CRYPTR_TEST_MODE;
+  delete process.env.CRYPTR_BASE_URL;
   delete process.env.CRYPTR_AUDIENCES;
   delete process.env.CRYPTR_TENANTS;
   delete process.env.CRYPTR_ISSUER;
@@ -107,6 +109,7 @@ describe('Cryptr Strategy - with empty Config', () => {
 describe("Cryptr Strategy - with valid cryptr config env vars", () => {
   beforeEach(() => {
     process.env = Object.assign(process.env, {
+      CRYPTR_BASE_URL: validCryptrConfig.base_url,
       CRYPTR_AUDIENCES: validCryptrConfig.audiences,
       CRYPTR_ISSUER: validCryptrConfig.issuer,
       CRYPTR_TENANTS: validCryptrConfig.tenants,
