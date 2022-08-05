@@ -190,3 +190,35 @@ describe('Cryptr Strategy - option as verify', () => {
     expect(strategy._verify).toEqual(verify)
   })
 })
+
+describe('Cryptr Strategy - _innerVerified', () => {
+   beforeEach(() => {
+    process.env = Object.assign(process.env, {
+      CRYPTR_BASE_URL: validCryptrConfig.base_url,
+      CRYPTR_AUDIENCES: validCryptrConfig.audiences,
+      CRYPTR_ISSUER: validCryptrConfig.issuer,
+      CRYPTR_TENANTS: validCryptrConfig.tenants,
+      NODE_ENV: 'development'
+    });
+  });
+
+  var verify = function (accessToken, idToken, profile, done) {}
+
+  it('should return error if error present', () => {
+    let strategy = new Strategy(verify);
+    const errorMsg = "Some error occured";
+    strategy.error = (err) => err;
+    const innerVerification = strategy._innerVerified(strategy, errorMsg, null, null)
+    expect(innerVerification).toEqual(errorMsg);
+  })
+ 
+  it('should return resource_owner and info if success', () => {
+    let strategy = new Strategy(verify);
+    const resource_owner = "jane.doe@cryptr.co";
+    const info = "Some info";
+    const successFn = jest.fn();
+    strategy.success = successFn;
+    strategy._innerVerified(strategy, null, resource_owner, info)
+    expect(successFn).toHaveBeenCalledWith(resource_owner, info);
+  })
+})
