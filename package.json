@@ -1,17 +1,18 @@
 {
   "name": "@cryptr/passport-cryptr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cryptr authentication strategy for Passport.js",
   "main": "./lib",
   "scripts": {
     "start:dev": "node dev/app.js",
-    "make-badges": "jest --coverage && istanbul-badges-readme",
+    "make-badges": "istanbul-badges-readme",
     "test:coverage": "jest --coverage",
     "test": "jest --config jest.config.json && npm run make-badges",
+    "test:without-coverage": "jest --config jest.config.json",
     "test:watch": "jest --config jest.config.json --watch && npm run make-badges",
     "unpublish": "npm unpublish ${npm_package_name}@{npm_package_version} --force",
     "publish-force": "npm run unpublish && ls && npm run publish:lib",
-    "publish": "npm run test && ls && npm run publish:lib",
+    "publish": "npm run test:without-coverage && ls && npm run publish:lib",
     "publish:lib": "npm publish"
   },
   "keywords": [
