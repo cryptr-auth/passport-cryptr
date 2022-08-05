@@ -1,6 +1,6 @@
 {
   "name": "@cryptr/passport-cryptr",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Cryptr authentication strategy for Passport.js",
   "main": "./lib",
   "scripts": {
@@ -14,14 +14,15 @@
     "publish": "npm run test && ls && npm run publish:lib",
     "publish:lib": "npm publish"
   },
-  "publishConfig": {
-    "registry": "https://cryptr-npm.onrender.com"
-  },
   "keywords": [
     "cryptr",
     "passport",
     "passportjs",
-    "strategy"
+    "strategy",
+    "authentication",
+    "gateway",
+    "sso",
+    "express"
   ],
   "author": "Cryptr <thibaud@cryptr.co> (https://www.cryptr.co)",
   "license": "MIT",
@@ -45,10 +46,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shark-up/passport-cryptr.git"
+    "url": "git+https://github.com/cryptr-auth/passport-cryptr.git"
   },
   "bugs": {
-    "url": "https://github.com/shark-up/passport-cryptr/issues"
+    "url": "https://github.com/cryptr-auth/passport-cryptr/issues"
   },
-  "homepage": "https://github.com/shark-up/passport-cryptr#readme"
+  "homepage": "https://github.com/cryptr-auth/passport-cryptr#readme"
 }

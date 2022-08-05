@@ -2,12 +2,13 @@
 | ------------------------- | ----------------------- | ------------------------ |
 | ![Statements](https://img.shields.io/badge/statements-100%25-brightgreen.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-95%25-brightgreen.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-100%25-brightgreen.svg?style=flat) |
 
-
 # passport-cryptr
 
 Cryptr Authentication Strategy for Passport.js.
 
 Use it in your Node/Express/Nest project when you are using PassportJs to authorize actions or access specific controller routes
+
+Based on `passport-strategy@1.x.x`  and `passport@^0.6.0`
 
 ## Configuration
 
