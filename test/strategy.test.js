@@ -3,7 +3,6 @@ let Strategy = require("../lib/strategy");
 let validCryptrConfig = {
   base_url: "http://localhost:4000",
   audiences: ["http://localhost:3001"],
-  issuer: "http://localhost:4000",
   tenants: ["cryptr-cryptr"],
 };
 
@@ -114,17 +113,12 @@ describe("Cryptr Strategy - with valid cryptr config env vars", () => {
     process.env = Object.assign(process.env, {
       CRYPTR_BASE_URL: validCryptrConfig.base_url,
       CRYPTR_AUDIENCES: validCryptrConfig.audiences,
-      CRYPTR_ISSUER: validCryptrConfig.issuer,
       CRYPTR_TENANTS: validCryptrConfig.tenants,
     });
   });
 
   it("should have set CRYPTR_AUDIENCES", () => {
     expect(process.env.CRYPTR_AUDIENCES.split(',')).toEqual(validCryptrConfig.audiences);
-  });
-
-  it("should have set CRYPTR_ISSUER", () => {
-    expect(process.env.CRYPTR_ISSUER).toMatch(validCryptrConfig.issuer);
   });
 
   it("should have proper env cryptrConfig", () => {
@@ -155,10 +149,6 @@ describe("Cryptr Strategy - with valid env vars", () => {
     expect(process.env.CRYPTR_AUDIENCES.split(',')).toEqual(validCryptrConfig.audiences);
   });
 
-  it("should have set CRYPTR_ISSUER", () => {
-    expect(process.env.CRYPTR_ISSUER).toMatch(validCryptrConfig.issuer);
-  });
-
   it("should have proper env cryptrConfig", () => {
     var validStrategy = new Strategy(
       {},
@@ -180,7 +170,6 @@ describe('Cryptr Strategy - option as verify', () => {
   beforeEach(() => {
     process.env = Object.assign(process.env, {
       CRYPTR_AUDIENCES: validCryptrConfig.audiences,
-      CRYPTR_ISSUER: validCryptrConfig.issuer,
       NODE_ENV: 'development'
     });
   });
