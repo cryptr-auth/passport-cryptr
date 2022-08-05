@@ -7,7 +7,7 @@
 
 Cryptr Authentication Strategy for Passport.js.
 
-Use it in your Node/Express/Nest project when you are using PassportJs to authorize actions or access on specific controller routes
+Use it in your Node/Express/Nest project when you are using PassportJs to authorize actions or access specific controller routes
 
 ## Configuration
 
@@ -57,7 +57,7 @@ opts?: {
 }
 ```
 
-:warning: if you don not use `opts` value for `test` will be
+:warning: if you do not use `opts` value for `test` will be
 
 - prior to `CRYPTR_TEST_MODE` env value
 - or result of `NODE_ENV === 'development'` if prior not succeed
