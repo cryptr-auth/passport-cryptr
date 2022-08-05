@@ -2,7 +2,7 @@ node_modules/
 dist/
 npm-debug.log
 yarn-error.log
-.env
+*.env
 cypress/.DS_Store
 .DS_Store
 coverage/
