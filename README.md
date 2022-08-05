@@ -1,13 +1,13 @@
 | Statements                | Branches                | Functions                |
 | ------------------------- | ----------------------- | ------------------------ |
-| ![Statements](https://img.shields.io/badge/Coverage-96.1%25-brightgreen.svg) | ![Branches](https://img.shields.io/badge/Coverage-92.31%25-brightgreen.svg) | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) |
+| ![Statements](https://img.shields.io/badge/statements-100%25-brightgreen.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-95%25-brightgreen.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-100%25-brightgreen.svg?style=flat) |
 
 
 # passport-cryptr
 
 Cryptr Authentication Strategy for Passport.js.
 
-Use it in your Node/Express/Nest project when you are using PassportJs to authorize actions or access on specific controller routes
+Use it in your Node/Express/Nest project when you are using PassportJs to authorize actions or access specific controller routes
 
 ## Configuration
 
@@ -21,7 +21,7 @@ You have two choices :
   # .env
   CRYPTR_AUDIENCES=YOUR_FRONT_CLIENT_URLS
   CRYPTR_TENANTS=YOUR_TENANT_DOMAINS
-  CRYPTR_ISSUER=ISSUER_FOR_YOUR_DOMAIN
+  CRYPTR_BASE_URL=ISSUER_FOR_YOUR_DOMAIN
   CRYPTR_TEST_MODE=false
   ```
 
@@ -33,7 +33,7 @@ Your config should follow this interface
 {
   audiences: string[],
   tenants: string[],
-  issuer: string
+  base_url: string
 }
 ```
 
@@ -43,13 +43,13 @@ example:
 const CRYPTR_DEV_CONFIG = {
   "audiences": ["http://127.0.0.1:3000"],
   "tenants": ["my-domain"],
-  "issuer": "my_issuer_url"
+  "base_url": "https://my-domain.authent.me"
 }
 ```
 
 ### Opts
 
-For now opts follow this struct
+For now, opts follow this struct
 
 ```typescript
 opts?: {
@@ -57,7 +57,7 @@ opts?: {
 }
 ```
 
-:warning: if you don not use `opts` value for `test` will be
+:warning: if you do not use `opts` value for `test` will be
 
 - prior to `CRYPTR_TEST_MODE` env value
 - or result of `NODE_ENV === 'development'` if prior not succeed
@@ -74,10 +74,12 @@ interface Claims {
   cid: string
   exp: number
   iat: number
+  ips string // "cryptr" or provider (ex: azure_ad)
   iss: string
   jti: string
   jtt: string
   resource_owner_metadata: any
+  sci: string | null // SSO Connection ID
   scp: Array<string>
   sub: string
   tnt: string
@@ -120,6 +122,7 @@ Main properties to check:
 - `tnt`
 - `exp`
 - `version`
+- `ips`
 
 1. `resource_owner_metadata` this property reflects metadata you register in Cryptr DB about your end-user properties. **This is an object or a null value**
 
@@ -139,3 +142,7 @@ Main properties to check:
 4. `exp` is a timestamp and represent when this token expires, If it's in the past it should be not valid
 
 5. `version` Is now `1` but may increment in future update of this strategy
+
+6. `ips` Represent `cryptr` if you are in magic link process, even it's the SSO provider ex: `azure_ad`
+
+7. `sci` Only set if you are on SSO process, representing the ID of the connection SSO used ex: `shark_academy_Bew14hd05jd`

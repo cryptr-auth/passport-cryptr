@@ -5,7 +5,8 @@
   "main": "./lib",
   "scripts": {
     "start:dev": "node dev/app.js",
-    "make-badges": "istanbul-badges-readme",
+    "make-badges": "jest --coverage && istanbul-badges-readme",
+    "test:coverage": "jest --coverage",
     "test": "jest --config jest.config.json && npm run make-badges",
     "test:watch": "jest --config jest.config.json --watch && npm run make-badges",
     "unpublish": "npm unpublish ${npm_package_name}@{npm_package_version} --force",
@@ -35,7 +36,8 @@
     "express": "^4.17.1",
     "istanbul-badges-readme": "^1.0.5",
     "jest": "^26.5.2",
-    "passport": "^0.4.1"
+    "passport": "^0.6.0",
+    "typescript": "^4.7.4"
   },
   "directories": {
     "lib": "lib",

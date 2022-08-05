@@ -2,7 +2,7 @@ require('dotenv').config()
 const { default: Axios } = require('axios');
 const express = require('express')
 const passport = require('passport');
-const CryptrStrateegy = require('../lib/strategy');
+const CryptrStrategy = require('../lib/strategy');
 const axios = require('axios')
 const app = express()
 const port = 4242
@@ -21,7 +21,7 @@ const tokens = [
 ]
 
 const accountData = {
-  "8348b40a-5639-4d88-b0a9-da57e318cb89" : [
+  "534dcbe0-c88d-441d-84cd-1daa8dbc8393" : [
     {
       title: "Moby Dick",
       author: "Melville",
@@ -48,8 +48,17 @@ const accountData = {
 }
 
 app.use(passport.initialize());
-passport.use(new CryptrStrateegy(
+passport.use(new CryptrStrategy(
   // instead of env file we can use {cryptrConfig},
+  {
+    cleeckConfig: {
+      base_url: process.env.CRYPTR_BASE_URL,
+      audiences: process.env.CRYPTR_AUDIENCES.split(','),
+      issuer: process.env.CRYPTR_ISSUER,
+      tenants: process.env.CRYPTR_TENANTS.split(',')
+    },
+    opts: { test: true }
+  },
   function(jwt, done) {
     //Here should be like ResourceOwner.findByClaims(jwt.claims)
     return done(jwt.errors, jwt.claims, null)
@@ -94,10 +103,14 @@ app.get('/my-account', async function(req, res, next) {
 app.get('/books', function(req, res, next) {
   passport.authenticate('cryptr', function(err, claims, info) {
     if (err || !claims) { 
-      res.writeHead(401);
-      res.end(err || info.errors);
+      const rawBody = err || info;
+      if (typeof(rawBody) === "object") {
+        return res.status(401).json(rawBody)
+      } else {
+        return  res.status($401).end(rawBody.toString())
+      }
     }
-    res.json(accountData[claims.sub]);
+    res.json(accountData[claims.sub] || []);
   })(req, res, next);
 })
 
