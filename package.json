@@ -28,7 +28,7 @@
   "author": "Cryptr <thibaud@cryptr.co> (https://www.cryptr.co)",
   "license": "MIT",
   "dependencies": {
-    "@cryptr/cryptr-jwt-verifier": "^0.1.1",
+    "@cryptr/cryptr-jwt-verifier": "^0.2.5",
     "passport-strategy": "1.x.x"
   },
   "devDependencies": {
