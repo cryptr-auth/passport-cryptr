@@ -4,6 +4,8 @@
 
 # passport-cryptr
 
+Version `1.1.0`
+
 Cryptr Authentication Strategy for Passport.js.
 
 Use it in your Node/Express/Nest project when you are using PassportJs to authorize actions or access specific controller routes
