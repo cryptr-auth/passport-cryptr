@@ -1,11 +1,10 @@
 require('dotenv').config()
-const { default: Axios } = require('axios');
 const express = require('express')
 const passport = require('passport');
 const CryptrStrategy = require('../lib/strategy');
-const axios = require('axios')
 const app = express()
 const port = 4242
+const ky = require('ky')
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -72,14 +71,7 @@ app.get('/', function(req, res, next) {
 app.get('/my-account', async function(req, res, next) {
   const token = tokens[parseInt(req.query.token) - 1 ]
   let error;
-  const data = await axios
-    .get(`http://localhost:${port}/books`, {headers: {Authorization: `Bearer ${token}`}})
-    .then(res => {
-      return res.data
-    }).catch((err) => {
-      error = err
-      return []
-    })
+  const data = await ky.get(`http://localhost:${port}/books`, {headers: {Authorization: `Bearer ${token}`}}).json()
   const pageParams = {
     title: 'Secured Page', 
     data: data,
@@ -88,17 +80,6 @@ app.get('/my-account', async function(req, res, next) {
   }
   res.render('secured-page', pageParams)
 })
-
-// app.get('/books', passport.authenticate('cryptr', (a,b, c) => {
-//   console.log(typeof a)
-//   console.log(typeof b)
-//   console.log(typeof c)
-// }), (req, res) => {
-//   // console.log(res)
-//   res.setHeader('Content-Type', 'application/json');
-//   res.end("[]");
-//   // res.end(JSON.stringify(accountData[claims.sub]));
-// })
 
 app.get('/books', function(req, res, next) {
   passport.authenticate('cryptr', function(err, claims, info) {
