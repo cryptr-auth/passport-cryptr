@@ -28,7 +28,7 @@
   "author": "Cryptr <thibaud@cryptr.co> (https://www.cryptr.co)",
   "license": "MIT",
   "dependencies": {
-    "@cryptr/cryptr-jwt-verifier": "^0.3.3",
+    "@cryptr/cryptr-jwt-verifier": "^0.3.4",
     "passport-strategy": "1.x.x"
   },
   "devDependencies": {
@@ -48,9 +48,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cryptr-auth/passport-cryptr.git"
-  },
-  "overrides": {
-    "jose": ">= 4.15.5"
   },
   "bugs": {
     "url": "https://github.com/cryptr-auth/passport-cryptr/issues"
