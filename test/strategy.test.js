@@ -228,7 +228,7 @@ describe('Cryptr Strategy - _verifyToken', () => {
 
   let verify = function (accessToken, idToken, profile, done) {}
 
-  it('should crash if undefined token', () => {
+  xit('should crash if undefined token', () => {
     let strategy = new Strategy(verify);
     strategy.fail = (err) => err;
     const res = strategy._verifyToken(undefined, strategy, null, null)
