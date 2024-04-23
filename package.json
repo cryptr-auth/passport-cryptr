@@ -49,6 +49,9 @@
     "type": "git",
     "url": "git+https://github.com/cryptr-auth/passport-cryptr.git"
   },
+  "overrides": {
+    "jose": ">= 4.15.5"
+  },
   "bugs": {
     "url": "https://github.com/cryptr-auth/passport-cryptr/issues"
   },
