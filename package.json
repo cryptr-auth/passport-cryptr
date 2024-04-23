@@ -1,6 +1,6 @@
 {
   "name": "@cryptr/passport-cryptr",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Cryptr authentication strategy for Passport.js",
   "main": "./lib",
   "scripts": {
