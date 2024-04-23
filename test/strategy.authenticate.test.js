@@ -232,8 +232,6 @@ describe('Cryptr Strategy with cryptrconfig testing verified', () => {
       jwt = j;
       verify = v;
     }).authenticate(validHeaderRequest);
-    console.info(i, validCryptrConfig);
-    verify = (a, b, c) => {console.log(a, b, c)}
   })
 
   xit('should return verified function', () => {
@@ -254,7 +252,6 @@ describe('Cryptr Strategy with cryptrconfig testing verified', () => {
   })
   
   it('should return resourceOwner if resourceOner in verified', () => {
-    console.log('25$', verify)
     expect(verify(null, {email: 'myemail@client.io'}, null)).toBe(undefined)
   })
   
