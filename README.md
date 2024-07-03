@@ -1,10 +1,10 @@
 | Statements                | Branches                | Functions                |
 | ------------------------- | ----------------------- | ------------------------ |
-| ![Statements](https://img.shields.io/badge/statements-49.43%25-red.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-37.34%25-red.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-60%25-red.svg?style=flat) |
+| ![Statements](https://img.shields.io/badge/statements-89.88%25-yellow.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-84.33%25-yellow.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-93.33%25-brightgreen.svg?style=flat) |
 
 # passport-cryptr
 
-Version `1.1.1`
+Version `1.1.2`
 
 Cryptr Authentication Strategy for Passport.js.
 
@@ -23,6 +23,7 @@ You have two choices :
   ```bash
   # .env
   CRYPTR_AUDIENCES=YOUR_FRONT_CLIENT_URLS
+  CRYPTR_CLIENT_IDS=YOUR_FRONT_CLIENT_IDS
   CRYPTR_TENANTS=YOUR_TENANT_DOMAINS
   CRYPTR_BASE_URL=ISSUER_FOR_YOUR_DOMAIN
   CRYPTR_TEST_MODE=false
@@ -36,6 +37,7 @@ Your config should follow this interface
 {
   audiences: string[],
   tenants: string[],
+  client_ids: string[],
   base_url: string
 }
 ```
@@ -45,6 +47,7 @@ example:
 ```typescript
 const CRYPTR_DEV_CONFIG = {
   "audiences": ["http://127.0.0.1:3000"],
+  "client_ids": ["8363b1b4-68bb-4257-9e45-5513aecc1703"],
   "tenants": ["my-domain"],
   "base_url": "https://my-domain.authent.me"
 }
