@@ -4,6 +4,7 @@ let validCryptrConfig = {
   base_url: "http://localhost:4000",
   audiences: ["http://localhost:3001"],
   tenants: ["cryptr-cryptr"],
+  client_ids: ['f407cafd-b58a-472f-b857-475a863b69b6']
 };
 
 let otherTenantToken =
@@ -114,6 +115,7 @@ describe("Cryptr Strategy - with valid cryptr config env vars", () => {
       CRYPTR_BASE_URL: validCryptrConfig.base_url,
       CRYPTR_AUDIENCES: validCryptrConfig.audiences,
       CRYPTR_TENANTS: validCryptrConfig.tenants,
+      CRYPTR_CLIENT_IDS: validCryptrConfig.client_ids,
     });
   });
 
@@ -141,7 +143,8 @@ describe("Cryptr Strategy - with valid cryptr config env vars", () => {
 describe("Cryptr Strategy - with valid env vars", () => {
   beforeEach(() => {
     process.env = Object.assign(process.env, {
-      CRYPTR_TEST_MODE: true
+      CRYPTR_TEST_MODE: true,
+      CRYPTR_CLIENT_IDS: validCryptrConfig.client_ids
     });
   });
 
@@ -170,6 +173,7 @@ describe('Cryptr Strategy - option as verify', () => {
   beforeEach(() => {
     process.env = Object.assign(process.env, {
       CRYPTR_AUDIENCES: validCryptrConfig.audiences,
+      CRYPTR_CLIENT_IDS: validCryptrConfig.client_ids,
       NODE_ENV: 'development'
     });
   });
@@ -190,6 +194,7 @@ describe('Cryptr Strategy - _innerVerified', () => {
       CRYPTR_AUDIENCES: validCryptrConfig.audiences,
       CRYPTR_ISSUER: validCryptrConfig.issuer,
       CRYPTR_TENANTS: validCryptrConfig.tenants,
+      CRYPTR_CLIENT_IDS: validCryptrConfig.client_ids,
       NODE_ENV: 'development'
     });
   });

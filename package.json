@@ -1,6 +1,6 @@
 {
   "name": "@cryptr/passport-cryptr",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Cryptr authentication strategy for Passport.js",
   "main": "./lib",
   "scripts": {
@@ -28,7 +28,7 @@
   "author": "Cryptr <thibaud@cryptr.co> (https://www.cryptr.co)",
   "license": "MIT",
   "dependencies": {
-    "@cryptr/cryptr-jwt-verifier": "^0.3.4",
+    "@cryptr/cryptr-jwt-verifier": "^1.0.1",
     "passport-strategy": "1.x.x"
   },
   "devDependencies": {
